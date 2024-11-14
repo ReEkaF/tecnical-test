@@ -36,9 +36,9 @@ return [
     */
 
     'guards' => [
-        'web-approver' => [
+        'admin-center' => [
             'driver' => 'session',
-            'provider' => 'approvers',
+            'provider' => 'users',
         ],
         'web-admin' => [
             'driver' => 'session',
@@ -64,9 +64,9 @@ return [
     */
 
     'providers' => [
-        'approvers' => [
+        'users' => [
             'driver' => 'eloquent',
-            'model' => env('AUTH_MODEL', App\Models\Approver::class),
+            'model' => env('AUTH_MODEL', App\Models\User::class),
         ],
 
         'admins' => [

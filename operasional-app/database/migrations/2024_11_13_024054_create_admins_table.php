@@ -15,6 +15,10 @@ return new class extends Migration
             $table->uuid('id_admin')->primary();
             $table->string('username')->unique();
             $table->string('password');
+            $table->string('admin_field_name');
+            $table->unsignedBigInteger('mine_id');
+            $table->timestamps();
+            $table->foreign('mine_id')->references('id_mine')->on('mines');
         });
     }
 

@@ -11,11 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('approvers', function (Blueprint $table) {
-            $table->uuid('id_approver')->primary();
-            $table->string('username')->unique();
-            $table->string('password');
-            $table->enum('jabatan',['supervisor','manager']);
+        Schema::create('mines', function (Blueprint $table) {
+            $table->id('id_mine');
+            $table->string('location');
+            $table->timestamps();
         });
     }
 
@@ -24,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('approvers');
+        Schema::dropIfExists('mines');
     }
 };

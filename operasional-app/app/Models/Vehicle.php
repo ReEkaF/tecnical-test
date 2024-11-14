@@ -2,46 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
 class Vehicle extends Model
 {
-    //
-    protected static function boot()
-    {
-        parent::boot(); // Pastikan memanggil parent::boot()
-        static::creating(function ($model) {
-            if (! $model->getKey()) {
-                $model->{$model->getKeyName()} = (string) Str::uuid();
-            }
-        });
-    }
-
-    /**
-     * Get the value indicating whether the IDs are incrementing.
-     *
-     * @return bool
-     */
-    public function getIncrementing()
-    {
-        return false;
-    }
-
-    /**
-     * Get the auto-incrementing key type.
-     *
-     * @return string
-     */
-    public function getKeyType()
-    {
-        return 'string';
-    }
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+    use Notifiable,HasFactory;
     public $timestamps = false;
     protected $primaryKey = 'id_vehicle';
     protected $fillable = [
@@ -51,5 +18,14 @@ class Vehicle extends Model
         'company_id',
         'fuel_type',
         'fuel_capacity',
+        'mine_id',
     ];
+    public function booking()
+    {
+        return $this->hasMany(Booking::class,);
+    }
+    public function vehicleService()
+    {
+        return $this->hasMany(VehicleService::class);
+    }
 }

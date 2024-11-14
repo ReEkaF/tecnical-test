@@ -16,7 +16,9 @@ return new class extends Migration
             $table->string('driver_name');
             $table->string('driver_address');
             $table->string('driver_contact');
+            $table->unsignedBigInteger('mine_id');
             $table->timestamps();
+            $table->foreign('mine_id')->references('id_mine')->on('mines');
         });
     }
 

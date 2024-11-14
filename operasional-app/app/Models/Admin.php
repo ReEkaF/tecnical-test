@@ -42,5 +42,9 @@ class Admin extends Authenticatable
      */
     public $timestamps = false;
     protected $primaryKey = 'id_admin';
-    protected $fillable = ['username', 'password'];
+    protected $fillable = ['username', 'password','admin_field_name','mine_id'];
+    public function booking()
+    {
+        return $this->hasMany(Booking::class,);
+    }
 }

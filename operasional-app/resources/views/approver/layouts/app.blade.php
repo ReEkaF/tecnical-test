@@ -24,13 +24,12 @@
             document.documentElement.classList.remove('dark')
         }
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body class="bg-gray-50 dark:bg-gray-800">
-    @include('admin.layouts.navigation')
+    @include('approver.layouts.navigation')
     <div class="flex pt-16 overflow-hidden bg-gray-50 dark:bg-gray-900">
-        @include('admin.layouts.sidebar')
+        @include('approver.layouts.sidebar')
         <div class="fixed inset-0 z-10 hidden bg-gray-900/50 dark:bg-gray-900/90" id="sidebarBackdrop"></div>
         <div id="main-content" class="relative w-full h-full overflow-y-auto bg-gray-50 lg:ml-64 dark:bg-gray-900">
             <!-- Page Content -->
@@ -38,7 +37,7 @@
                 {{ $slot }}
             </main>
 
-            @include('admin.layouts.footer')
+            @include('approver.layouts.footer')
         </div>
     </div>
     <script async defer src="https://buttons.github.io/buttons.js"></script>
