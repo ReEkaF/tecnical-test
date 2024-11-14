@@ -38,7 +38,7 @@ Since i just do this project in 2 days(1 days in coding hehe),i cant put all off
 ## Installation Requirements
 
 ### requiment to install
-
+- composer install
 - npm install
 - npm install flowbite
 - composer require maatwebsite/excel
@@ -47,5 +47,7 @@ Note : maybe some people need to download more but this all i already install in
 ## Hot To use 
 
 ### seed
+- you can use use database with php artisan migrate --seed
+- or if you already migrate but want to migrate again just use php artisan mingrate:fresh --seed
 there 2 actor in this app (Admin-Center,Admin-Field)
 for 
