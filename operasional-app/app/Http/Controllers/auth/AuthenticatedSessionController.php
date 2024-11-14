@@ -11,20 +11,7 @@ use Illuminate\View\View;
 
 class AuthenticatedSessionController extends Controller
 {
-    /**
-     * Display the login view.
-     */
-    protected function authenticated(Request $request, $user)
-    {
-        return redirect()->route('home');
-    }
-    public function create(): View
-    {
-        return view('auth.login');
-    }
-    /**
-     * Handle an incoming authentication request.
-     */
+
     public function store(LoginRequest $request): RedirectResponse
     {
         
@@ -32,7 +19,7 @@ class AuthenticatedSessionController extends Controller
         
         if ($this->attemptLogin('web-admin', $credentials)) {
             return $this->handleAdminLogin($request);
-        } elseif ($this->attemptLogin('admin-center', $credentials)) {
+        } elseif ($this->attemptLogin('web-admin-center', $credentials)) {
             return $this->handleApproverLogin($request);
         }
         return back()->withErrors([
@@ -42,27 +29,18 @@ class AuthenticatedSessionController extends Controller
     private function attemptLogin($guard, $credentials): bool
     {
          // Debug guard dan kredensial untuk memastikan validasi
-         
         return auth()->guard($guard)->attempt($credentials);
     }
 
     private function handleApproverLogin($request): RedirectResponse
     {
         
-        $user = auth()->guard('admin-center')->user();
-
-        $request->authenticate();
         $request->session()->regenerate();
-        $request->session()->put('username', $user->username);
         return redirect()->route('admin-center.dashboard');
     }
     private function handleAdminLogin($request): RedirectResponse
     {
-        $user = auth()->guard('web-admin')->user();
-        
         $request->session()->regenerate();
-        $request->session()->put('username', $user->username);
-
         return redirect()->route('admin.dashboard');
     }
     /**
@@ -70,15 +48,6 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
-        // Cek guard mana yang sedang login
-        $guards = ['web-admin', 'web-approver' ];
-
-        foreach ($guards as $guard) {
-            if (Auth::guard($guard)->check()) {
-                Auth::guard($guard)->logout();
-                break;
-            }
-        }
         // Invalidate session dan regenerate token
         $request->session()->invalidate();
         $request->session()->regenerateToken();

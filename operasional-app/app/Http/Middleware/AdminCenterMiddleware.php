@@ -18,7 +18,7 @@ class AdminCenterMiddleware
     {
 
         // Check if the user is authenticated using the 'admin-center' guard
-        if (Auth::guard('admin-center')->check()) {
+        if (Auth::guard('web-admin-center')->check()) {
             return $next($request);
         } else {
             return redirect()->route('login')->withErrors(['' => 'Akses tidak diizinkan']);

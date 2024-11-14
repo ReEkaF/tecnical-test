@@ -8,13 +8,13 @@
     <div class="flex items-center justify-center min-h-screen bg-gray-50 py-8">
         <div class="max-w-6xl w-full p-8 bg-white rounded-lg shadow-md border-2 border-black">
             <nav class="text-sm text-gray-500 mb-4">
-                <a href="{{ route('admin.dashboard') }}" class="text-black-500 hover:underline">Dashboard</a> > <a href="{{ route('admin.buat_peminjaman') }}" class="text-black-500 hover:underline">Peminjaman</a> > <b>Tambah Peminjaman</b>
+                <a href="{{ route('admin.dashboard') }}" class="text-black-500 hover:underline">Dashboard</a> > <a href="{{ route('admin.record') }}" class="text-black-500 hover:underline">Booking</a> > <b>Record Booking</b>
             </nav>
-            <h2 class="text-lg font-semibold text-gray-800">Tambah Data Peminjaman</h2>
-            <p class="text-sm text-gray-600 mb-6">Ini adalah halaman untuk menambah Peminjaman</p>
+            <h2 class="text-lg font-semibold text-gray-800">Record Booking</h2>
+            <p class="text-sm text-gray-600 mb-6">page for record</p>
             <form action="{{ route('admin.record.store') }}" method="POST">
                 @csrf
-                <input type="hidden" value="{{$used[0]->id_booking}}" name="id_booking">
+                <input type="hidden" value="{{$used[0]->id_booking}}" name="booking_id">
                 <x-input-label for="fuel_used" :value="__('Fuel Used')" />
 
                 <x-text-input id="fuel_used" class="block mt-1 w-full" type="text" name="fuel_used" :value="old('fuel_used')" required autofocus />

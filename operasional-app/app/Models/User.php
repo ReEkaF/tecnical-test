@@ -10,17 +10,6 @@ use Illuminate\Support\Str;
 
 class User extends Authenticatable
 {
-    /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
-    protected static function boot() {
-        parent::boot(); // Pastikan memanggil parent::boot()
-
-        static::creating(function ($model) {
-            if ( ! $model->getKey()) {
-                $model->{$model->getKeyName()} = (string) Str::uuid();
-            }
-        });
-    }
 
     /**
      * Get the value indicating whether the IDs are incrementing.
@@ -50,7 +39,6 @@ class User extends Authenticatable
     protected $fillable = [
         'username',
         'password',
-        'admin_center_name',
     ];
 
     /**

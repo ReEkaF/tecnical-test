@@ -26,8 +26,6 @@
         </div>
     </div>
 
-
-
     <script>
         new Chart(document.getElementById("trov-chart"), {
             type: 'line',

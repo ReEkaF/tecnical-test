@@ -12,7 +12,7 @@ class UsedVehicleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'id_booking'=>[
+            'booking_id'=>[
                 'required',
             ],
             'fuel_used' => [
@@ -26,7 +26,7 @@ class UsedVehicleRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'id_booking.required' => 'Booking ID was required.',
+            'booking_id.required' => 'Booking ID was required.',
             'fuel_used.required' => 'Fuel was required.',
             'distance.required' => 'Distance was required.',
         ];

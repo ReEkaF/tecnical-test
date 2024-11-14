@@ -28,4 +28,8 @@ class Vehicle extends Model
     {
         return $this->hasMany(VehicleService::class);
     }
+    public function mine()
+    {
+        return $this->belongsTo(Mine::class,'mine_id','id_mine');
+    }
 }

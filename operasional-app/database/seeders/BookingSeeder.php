@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Admin;
+use App\Models\AdminCenter;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -31,8 +32,8 @@ class BookingSeeder extends Seeder
         }
 
         $adminCenter = Str::uuid();
-        User::create([
-            'id' => $adminCenter,
+        AdminCenter::create([
+            'id_admin_center' => $adminCenter,
             'username' => 'admin',
             'password' => bcrypt('admin123'),
             'admin_center_name' => 'Admin Center',

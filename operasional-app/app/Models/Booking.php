@@ -30,6 +30,10 @@ class Booking extends Model
     {
         return $this->belongsTo(Admin::class, 'created_by', 'id_admin');
     }
+    public function approved()
+    {
+        return $this->belongsTo(AdminCenter::class, 'admin_center_id','id_admin_center');
+    }
     public function historyVehicle()
     {
         return $this->hasMany(HistoryVehicle::class);

@@ -104,65 +104,7 @@ class AdminController extends Controller
         ];
         return $colors[$type] ?? '#000000'; // Default color if type not found
     }
-    public function BuatPeminjaman()
-    {
-        $booking = Booking::with('vehicle', 'driver', 'admin')->where('created_by', auth()->guard('web-admin')->user()->id_admin)->get();
-        return view('admin.BuatPeminjaman', compact('booking'));
-    }
-    public function record()
-    {
-        $booking = Booking::with('vehicle', 'driver', 'admin')
-            ->where('created_by', auth()->guard('web-admin')->user()->id_admin)
-            ->whereIn('status', ['approved', 'in use', 'done'])->get();
-        return view('admin.record.index', compact('booking'));
-    }
-    public function Create()
-    {
 
-        $vehicle = Vehicle::where('mine_id', auth()->guard('web-admin')->user()->mine_id)->get();
-        $driver = Driver::where('mine_id', auth()->guard('web-admin')->user()->mine_id)->get();
-        return view('admin.Peminjaman.create', compact('vehicle', 'driver'));
-    }
-
-
-    public function store(PeminjamanRequest $request)
-    {
-        // Validasi data yang masuk
-        $validatedData = $request->validated();
-
-        // Convert dates to the correct format (YYYY-MM-DD)
-        $validatedData['start_usage_date'] = Carbon::createFromFormat('m/d/Y', $validatedData['start_usage_date'])->format('Y-m-d');
-        $validatedData['end_usage_date'] = Carbon::createFromFormat('m/d/Y', $validatedData['end_usage_date'])->format('Y-m-d');
-        // Tambahkan data tambahan menggunakan Carbon
-        $validatedData['created_by'] = auth()->guard('web-admin')->user()->id_admin;
-        $validatedData['status'] = 'pending';
-        // Menyimpan data ke dalam database
-        Booking::create($validatedData);
-        // Redirect setelah data berhasil disimpan
-        return redirect()->route('admin.peminjaman.create')->with('success', 'Peminjaman berhasil dibuat');
-    }
-    public function inuse($id)
-    {
-        Booking::where('id_booking', $id)->update(['status' => 'in use']);
-        return redirect()->route('admin.record');
-    }
-    public function used($id)
-    {
-        $used = Booking::where('id_booking', $id)->get();
-        return view('admin.record.used', compact('used'));
-    }
-    public function store_record(UsedVehicleRequest $request)
-    {
-        // Validasi data yang masuk
-        $validatedData = $request->validated();
-        $booking = Booking::where('id_booking', $validatedData['id_booking'])->first();
-        $validatedData['driver_id'] = $booking->driver_id;
-        $validatedData['vehicle_id'] = $booking->vehicle_id;
-        HistoryVehicle::create($validatedData);
-        Booking::where('id_booking', $validatedData['id_booking'])->update(['status' => 'done']);
-        // Redirect setelah data berhasil disimpan
-        return redirect()->route('admin.record')->with('success', 'Record Saved');
-    }
 
     public function service()
     {

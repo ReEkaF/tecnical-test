@@ -12,4 +12,12 @@ class Mine extends Model
     protected $fillable = [
         'location'
     ];
+    public function vehicle()
+    {
+        return $this->hasMany(Vehicle::class);
+    }
+    public function Driver()
+    {
+        return $this->hasMany(Driver::class);
+    }
 }

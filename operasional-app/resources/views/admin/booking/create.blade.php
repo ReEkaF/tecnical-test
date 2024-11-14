@@ -8,11 +8,11 @@
     <div class="flex items-center justify-center min-h-screen bg-gray-50 py-8">
         <div class="max-w-6xl w-full p-8 bg-white rounded-lg shadow-md border-2 border-black">
             <nav class="text-sm text-gray-500 mb-4">
-                <a href="{{ route('admin.dashboard') }}" class="text-black-500 hover:underline">Dashboard</a> > <a href="{{ route('admin.buat_peminjaman') }}" class="text-black-500 hover:underline">Peminjaman</a> > <b>Tambah Peminjaman</b>
+                <a href="{{ route('admin.dashboard') }}" class="text-black-500 hover:underline">Dashboard</a> > <a href="{{ route('admin.booking') }}" class="text-black-500 hover:underline">Booking</a> > <b>Create Booking</b>
             </nav>
             <h2 class="text-lg font-semibold text-gray-800">Tambah Data Peminjaman</h2>
             <p class="text-sm text-gray-600 mb-6">Ini adalah halaman untuk menambah Peminjaman</p>
-            <form action="{{ route('admin.peminjaman.store') }}" method="POST">
+            <form action="{{ route('admin.booking.store') }}" method="POST">
                 @csrf
                     <label for="kendaraan" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kendaraan</label>
                     <select id="kendaraan" name="vehicle_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" onchange="handleVehicleChange(this)">

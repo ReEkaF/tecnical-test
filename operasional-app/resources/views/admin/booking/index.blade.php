@@ -1,7 +1,7 @@
 <x-admin-layouts>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
+            {{ __('Buat Peminjaman') }}
         </h2>
     </x-slot>
     <div class="py-12">
@@ -14,14 +14,17 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-6">
                 <nav class="text-sm text-gray-500 mb-4">
-                    <a href="{{ route('admin.dashboard') }}" class="text-black-500 hover:underline">Dashboard</a> > <b>Service</b>
+                    <a href="{{ route('admin.dashboard') }}" class="text-black-500 hover:underline">Dashboard</a> > Booking > <b>Organize Booking</b>
                 </nav>
-                <h3 class="text-lg font-semibold mb-4">Service</h3>
+                <h3 class="text-lg font-semibold mb-4">Booking</h3>
+
                 <div class="mb-4 flex justify-between items-center">
                     <div>
-                        <a href="{{ route('admin.service.create') }}" class="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600">Create Service</a>
+                        <a href="{{ route('admin.booking.create') }}" class="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600">Tambah Data</a>
                     </div>
+
                 </div>
+
                 <table id="selection-table">
                     <thead>
                         <tr>
@@ -43,7 +46,7 @@
                             </th>
                             <th>
                                 <span class="flex items-center">
-                                    Vehicle License
+                                    Ownership
                                     <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m8 15 4 4 4-4m0-6-4-4-4 4" />
                                     </svg>
@@ -51,7 +54,7 @@
                             </th>
                             <th>
                                 <span class="flex items-center">
-                                    Ownership
+                                    Driver
                                     <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m8 15 4 4 4-4m0-6-4-4-4 4" />
                                     </svg>
@@ -81,35 +84,20 @@
                                     </svg>
                                 </span>
                             </th>
-                            <th>
-                                <span class="flex items-center">
-                                    Action
-                                    <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m8 15 4 4 4-4m0-6-4-4-4 4" />
-                                    </svg>
-                                </span>
-                            </th>
 
                         </tr>
                     </thead>
                     <tbody class="text-gray-600 text-sm font-light">
-                        @foreach ($service as $s)
+                        @foreach ($booking as $b)
                         <tr>
-                            <td class="py-3 px-4">{{ $s->vehicle->vehicle_name }}</td>
-                            <td class="py-3 px-4">{{ $s->vehicle->vehicle_type }}</td>
-                            <td class="py-3 px-4">{{ $s->vehicle->vehicle_license }}</td>
-                            <td class="py-3 px-4">{{ $s->vehicle->company_id === 1 ? 'company' : 'rental' }}</td>
-                            <td class="py-3 px-4">{{ $s->start_date }}</td>
-                            <td class="py-3 px-4">{{ $s->end_date }}</td>
-                            <td class="py-3 px-4">{{ $s->status }}</td>
-                            <td class="py-3 px-4">
-                                @if ($s->status !== 'done')
-                                <div class="flex space-x-2">
-                                    <a href="{{route('admin.service.inservice',$s->id_vehicle_service)}}" class="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded">In Service</a>
-                                    <a href="{{route('admin.service.done',$s->id_vehicle_service)}}" class="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded">Done</a>
-                                </div>
-                                @endif
-                            </td>
+                            <td class="py-3 px-4">{{ $b->vehicle->vehicle_name }}</td>
+                            <td class="py-3 px-4">{{ $b->vehicle->vehicle_type }}</td>
+                            <td class="py-3 px-4">{{ $b->vehicle->company_id === 1 ? 'company' : 'rental' }}</td>
+                            <td class="py-3 px-4">{{ $b->driver->driver_name }}</td>
+                            <td class="py-3 px-4">{{ $b->start_usage_date }}</td>
+                            <td class="py-3 px-4">{{ $b->end_usage_date }}</td>
+                            <td class="py-3 px-4">{{ $b->status }}</td>
+
                         </tr>
                         @endforeach
                     </tbody>

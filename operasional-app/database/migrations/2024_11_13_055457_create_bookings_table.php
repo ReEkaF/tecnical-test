@@ -24,7 +24,7 @@ return new class extends Migration
             $table->foreign('vehicle_id')->references('id_vehicle')->on('vehicles');
             $table->foreign('driver_id')->references('id_driver')->on('drivers');
             $table->foreign('created_by')->references('id_admin')->on('admins');
-            $table->foreign('admin_center_id')->references('id')->on('users');
+            $table->foreign('admin_center_id')->references('id_admin_center')->on('admin_centers');
             
         });
     }

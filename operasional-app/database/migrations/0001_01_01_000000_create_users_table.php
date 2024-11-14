@@ -15,7 +15,6 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->string('username')->unique();
             $table->string('password');
-            $table->string('admin_center_name');
             $table->timestamps();
 
         });

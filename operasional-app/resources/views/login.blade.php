@@ -13,57 +13,55 @@
     }
   </style>
 </head>
-<body class="h-screen flex items-center justify-center bg-gray-100">
+<body class="h-screen flex items-center justify-center bg-gray-100 p-4">
 
-  <div class="flex w-full max-w-2xl bg-white rounded-lg shadow-lg overflow-hidden">
+  <div class="flex flex-col md:flex-row w-full max-w-2xl bg-white rounded-lg shadow-lg overflow-hidden">
     <!-- Left Side: Image -->
-    <div class="w-5/12 bg-cover bg-center" style="background-image: url('/images/bg-login.webp');">
+    <div class="h-40 md:h-auto md:w-5/12 bg-cover bg-center" style="background-image: url('/images/bg-login.webp');">
     </div>
 
     <!-- Right Side: Login Form -->
-    <div class="w-7/12 p-4 flex flex-col justify-center">
-      <div class="flex flex-col items-start p-6">
+    <div class="w-full md:w-7/12 p-4 flex flex-col justify-center">
+      <div class="flex flex-col items-start p-4 md:p-6">
         <!-- Logo -->
-        <img src="/images/logo/logo.webp" alt="Logo" class="h-20 mb-2">
+        <img src="/images/logo/logo.webp" alt="Logo" class="h-16 md:h-20 mb-2">
 
         <!-- Title and Subtitle -->
-        <h2 class="text-lg font-semibold text-gray-800 mb-1">Hey, Hello 👋</h2>
-        <p class="text-gray-600 mb-4 text-xs">Masukkan informasi yang Anda untuk login</p>
+        <h2 class="text-base md:text-lg font-semibold text-gray-800 mb-1">Hey, Hello 👋</h2>
+        <p class="text-gray-600 mb-4 text-xs md:text-sm">Masukkan informasi yang Anda untuk login</p>
 
         <!-- Login Heading -->
-        <h3 class="text-base font-semibold text-gray-700 mb-3">Login</h3>
+        <h3 class="text-sm md:text-base font-semibold text-gray-700 mb-3">Login</h3>
 
         <!-- Login Form -->
         <form class="w-full" method="POST" action="{{ route('login') }}">
           @csrf
           <div class="mb-3">
-            <label class="block text-gray-700 text-xs mb-1" for="username">Username</label>
+            <label class="block text-gray-700 text-xs md:text-sm mb-1" for="username">Username</label>
             <div class="flex items-center border rounded-lg focus-within:ring-2 focus-within:ring-blue-500">
               <!-- Icon -->
               <span class="pl-2 text-gray-500">
                 <img src="/icon/username.png" alt="Username Icon" class="h-4 w-4">
               </span>
               <!-- Input Field -->
-              <input type="text" id="username" name="username" placeholder="username" value="{{ old('username') }}" class="w-full px-2 py-1 focus:outline-none text-xs">
+              <input type="text" id="username" name="username" placeholder="username" value="{{ old('username') }}" class="w-full px-2 py-1 focus:outline-none text-xs md:text-sm">
             </div>
             <x-input-error :messages="$errors->get('username')" class="text-xs text-red-500 mt-0.5" />
           </div>
           <div class="mb-3">
-            <label class="block text-gray-700 text-xs mb-1" for="password">Password</label>
+            <label class="block text-gray-700 text-xs md:text-sm mb-1" for="password">Password</label>
             <div class="flex items-center border rounded-lg focus-within:ring-2 focus-within:ring-blue-500">
               <!-- Icon for Password -->
               <span class="pl-2 text-gray-500">
                 <img src="/icon/Lock 1.png" alt="Password Icon" class="h-4 w-4">
               </span>
               <!-- Input Field for Password -->
-              <input type="password" id="password" name="password" placeholder="********" class="w-full px-2 py-1 focus:outline-none text-xs">
+              <input type="password" id="password" name="password" placeholder="********" class="w-full px-2 py-1 focus:outline-none text-xs md:text-sm">
             </div>
             <x-input-error :messages="$errors->get('password')" class="text-xs text-red-500 mt-0.5" />
           </div>
-          <button type="submit" class="w-full py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg font-semibold text-xs mb-3">Login</button>
+          <button type="submit" class="w-full py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg font-semibold text-xs md:text-sm mb-3">Login</button>
         </form>
-
-
       </div>
     </div>
   </div>
