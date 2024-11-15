@@ -105,7 +105,7 @@ class ApproverController extends Controller
     }
     public function reject($id)
     {
-        Booking::where('id_booking', $id)->update(['status' => 'reject']);
+        Booking::where('id_booking', $id)->update(['status' => 'rejected']);
         return redirect()->route('admin-center.booking');
     }
     public function report()

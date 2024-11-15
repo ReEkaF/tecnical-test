@@ -105,8 +105,12 @@
                             <td class="py-3 px-4">
                                 @if ($s->status !== 'done')
                                 <div class="flex space-x-2">
-                                    <a href="{{route('admin.service.inservice',$s->id_vehicle_service)}}" class="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded">In Service</a>
-                                    <a href="{{route('admin.service.done',$s->id_vehicle_service)}}" class="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded">Done</a>
+                                    <a href="{{ route('admin.service.inservice', $s->id_vehicle_service) }}"
+                                        onclick="return confirm('Apakah Anda yakin ingin mengubah status menjadi In Service?')"
+                                        class="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded">In Service</a>
+                                    <a href="{{ route('admin.service.done', $s->id_vehicle_service) }}"
+                                        onclick="return confirm('Apakah Anda yakin ingin menandai layanan ini sebagai selesai (Done)?')"
+                                        class="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded">Done</a>
                                 </div>
                                 @endif
                             </td>

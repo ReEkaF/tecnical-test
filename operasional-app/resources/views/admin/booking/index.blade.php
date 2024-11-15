@@ -96,7 +96,7 @@
                             <td class="py-3 px-4">{{ $b->driver->driver_name }}</td>
                             <td class="py-3 px-4">{{ $b->start_usage_date }}</td>
                             <td class="py-3 px-4">{{ $b->end_usage_date }}</td>
-                            <td class="py-3 px-4">{{ $b->status }}</td>
+                            <td class="py-3 px-4 ">{{ $b->status }}</td>
 
                         </tr>
                         @endforeach

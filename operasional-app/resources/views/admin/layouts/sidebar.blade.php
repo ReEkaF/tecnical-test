@@ -30,13 +30,13 @@
                             {{-- Buat Peminjaman --}}
                             <li>
                                 <x-sidebar-dropdown-list-link href="{{ route('admin.booking') }}" :active="request()->is('admin/booking')">
-                                    Peminjaman
+                                    Booking
                                 </x-sidebar-dropdown-list-link>
                             </li>
                             {{-- Ajukan Peminjaman --}}
                             <li>
                                 <x-sidebar-dropdown-list-link href="{{ route('admin.record') }}" :active="request()->is('admin/record')">
-                                    Pencatatan
+                                    Record
                                 </x-sidebar-dropdown-list-link>
                             </li>
                         </x-sidebar-dropdown-list>
